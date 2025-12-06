@@ -1,0 +1,5 @@
+Your final task is to create a logging system that outputs every single value that can be programmatically accessed to smart dashboard.
+
+
+Bonus task:
+Steal the title of Lord of the XRPs
