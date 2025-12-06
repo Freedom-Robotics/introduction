@@ -9,6 +9,7 @@ import frc.robot.subsystems.Rangefinder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.FunctionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.DriveCommands;
@@ -72,7 +73,25 @@ public class ExampleCommands {
 
     public static FunctionalCommand task1Command() {
         // Replace the line below with your code
-        throw new UnsupportedOperationException("You haven't completed Task 1!");
+        return new FunctionalCommand(
+            () -> {
+                //sets exampleVar to 0 when task1Command is first called
+                exampleVar=0;
+            },
+            () -> {
+                //adds 1 to exampleVar every single loop of the robot (20ms by default)
+                //then prints exampleVar
+                exampleVar++;
+                System.out.println(exampleVar);
+            },
+            //does nothing on end
+            (interrupted) -> {},
+            () -> {
+                //5% chance of stopping
+                double probability = Math.random();
+                return (probability>=0.95);
+            }
+        );
     }
 
     /*
@@ -98,7 +117,19 @@ public class ExampleCommands {
      */
     public static ConditionalCommand task2Command() {
         // Replace the line below with your code
-        throw new UnsupportedOperationException("You haven't completed Task 2!");
+        return new ConditionalCommand(
+            //condition true do this
+            task1Command(), 
+            //condition false do this
+            new InstantCommand(
+                ()->{System.out.println("Task 2 Instant Command Executed");}
+            ), 
+            //condition
+            () -> {
+                double probability = Math.random();
+                return (probability>=0.5);
+            }
+            );
     }
 
     /*
@@ -130,6 +161,7 @@ public class ExampleCommands {
      */
     public static SequentialCommandGroup task3Command(Drivetrain drive) {
         // Replace the line below with your code
+        
         throw new UnsupportedOperationException("You haven't completed Task 3!");
     }
 
