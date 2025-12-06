@@ -70,7 +70,7 @@ public class RobotContainer {
     System.out.println(chooser.getSelected().shouldHappen);
     System.out.println("---------------------\n---------------------");
     return switch (chooser.getSelected()) {
-      case EXAMPLE_COMMAND -> ExampleCommands.exampleFunctionalCommand();
+      case EXAMPLE_COMMAND -> ExampleCommands.exampleFunctionalCommand(drive);
       case TASK_1 -> ExampleCommands.task1Command();
       case TASK_2 -> ExampleCommands.task2Command();
       case TASK_3 -> ExampleCommands.task3Command(drive);
